@@ -25,11 +25,6 @@ public class MyNewFrame extends JFrame {
 
 	private File file = new File("output.txt");
 	
-	private JButton addButton;
-	private JButton saveButton;
-	private JButton loadButton;
-	private JTextField textField;
-	
 	private DefaultListModel<Song> model = new DefaultListModel<>();
 	private JList<Song> songList;
 	
@@ -37,10 +32,10 @@ public class MyNewFrame extends JFrame {
 	
 	public MyNewFrame() {
 		dlg = new MyDialog(this, "Add Song", true, false);
-		addButton = new JButton("Add");
-		saveButton = new JButton("Save");
-		loadButton = new JButton("load");
-		textField = new JTextField(20);
+		JButton addButton = new JButton("Add");
+		JButton saveButton = new JButton("Save");
+		JButton loadButton = new JButton("load");
+		JTextField textField = new JTextField(20);
 		songList = new JList<>(model);
 		JScrollPane sPane = new JScrollPane(songList);
 		
@@ -111,15 +106,9 @@ public class MyNewFrame extends JFrame {
 	
 	private void showDlg() {
 		dlg.setVisible(true);
-		Song song = new Song(dlg.getNameField().getText(), Integer.parseInt(dlg.getDurField().getText()));
+		Song song = dlg.getSong();
 		model.addElement(song);
 		songList.setModel(model);
-		dlg.getNameField().setText("");
-		dlg.getDurField().setText("");
-	}
-	
-	public void setTextFieldText(String text) {
-		textField.setText(text);
 	}
 	
 	public static void main(String[] args) {

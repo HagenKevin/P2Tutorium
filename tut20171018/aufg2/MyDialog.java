@@ -14,7 +14,7 @@ public class MyDialog extends JDialog {
 
 	private JTextField nameField;
 	private JTextField durField;
-	private JButton okButton;
+	private Song song;
 	
 	private boolean visible;
 	
@@ -28,7 +28,7 @@ public class MyDialog extends JDialog {
 		
 		nameField = new JTextField(20);
 		durField = new JTextField(20);
-		okButton = new JButton("Okay");
+		JButton okButton = new JButton("Okay");
 		
 		centerPanel.setLayout(new GridLayout(2, 2));
 		centerPanel.add(nameLabel);
@@ -50,16 +50,17 @@ public class MyDialog extends JDialog {
 		String name = nameField.getText();
 		int duration = Integer.parseInt(durField.getText()); //falls wir einen Integer brauchen
 		
-		System.out.println(name + " " + duration);
+		song = new Song(name, duration);
+		System.out.println(song);
+		
+		nameField.setText("");
+		durField.setText("");
+		
 		setVisible(false);
 		dispose();
 	}
 	
-	public JTextField getNameField() {
-		return nameField;
-	}
-	
-	public JTextField getDurField() {
-		return durField;
+	public Song getSong() {
+		return song;
 	}
 }
